@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "দিনলিপি — আমার দৈনন্দিন সহকারী",
+  "short_name": "দিনলিপি",
+  "description": "দৈনন্দিন কাজ, খরচ, বাজার ও রুটিন পরিচালনার বাংলা অ্যাপ",
+  "lang": "bn",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f5",
+  "theme_color": "#102b25",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#102b25">
+<meta name="description" content="দৈনন্দিন কাজ, খরচ, বাজারের তালিকা ও রুটিনের বাংলা সহকারী।">
+<link rel="manifest" href="manifest.json">
+<title>দিনলিপি — দৈনন্দিন সহকারী</title>
+<style>
+:root{color-scheme:light;--bg:#f4f7f5;--surface:#fff;--ink:#172923;--muted:#74837c;--line:#e5ece7;--green:#176b55;--green-dark:#102b25;--mint:#dff4e9;--lime:#d6f36a;--coral:#ff806d;--shadow:0 12px 32px #17392b0c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Segoe UI",sans-serif;font-size:15px;line-height:1.5;padding-bottom:calc(86px + env(safe-area-inset-bottom))}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #8bcbb1;outline-offset:2px}
+.app-shell{max-width:1080px;margin:auto;padding:0 16px}
+.topbar{background:var(--green-dark);color:#fff;padding:22px 0 28px;border-radius:0 0 28px 28px}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:11px}.brand-mark{width:44px;height:44px;display:grid;place-items:center;background:var(--lime);color:var(--green-dark);border-radius:15px;font-size:23px}
+.brand-name{font-weight:850;font-size:20px;letter-spacing:-.5px}.brand-sub{font-size:12px;color:#b7c9c0;margin-top:1px}
+.date-pill{font-size:12px;border:1px solid #ffffff2c;border-radius:999px;padding:8px 10px;color:#e0eee7;white-space:nowrap}
+.greeting{margin-top:25px}.greeting .eyebrow{font-size:12px;color:var(--lime);font-weight:750;letter-spacing:.4px}.greeting h1{font-size:clamp(25px,6vw,36px);line-height:1.25;margin:5px 0 7px;letter-spacing:-.8px}.greeting p{margin:0;color:#c2d2ca;font-size:14px}
+main{padding-top:18px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 2px 12px}.section-head h2{font-size:18px;margin:0;letter-spacing:-.3px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.action-link{border:0;background:transparent;color:var(--green);font-weight:750;padding:8px 0}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:15px;min-width:0;box-shadow:var(--shadow)}
+.stat-top{display:flex;justify-content:space-between;align-items:center;gap:6px}.stat-icon{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:var(--mint)}.stat-icon.gold{background:#fff1c9}.stat-icon.pink{background:#ffe4df}.stat-icon.blue{background:#e5eaff}
+.stat-label{font-size:12px;color:var(--muted);margin-top:12px}.stat-value{font-size:25px;font-weight:850;letter-spacing:-.7px;line-height:1.25;margin-top:3px;overflow-wrap:anywhere}.stat-note{font-size:11px;color:var(--muted);margin-top:5px}
+.progress-card{background:var(--lime);border-radius:22px;padding:18px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:14px}.progress-card h3{margin:0;font-size:17px}.progress-card p{margin:5px 0 0;font-size:12px;color:#35452b}.progress-ring{width:62px;height:62px;flex:none;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) var(--progress,0%),#ffffffa8 0);position:relative}.progress-ring:before{content:"";position:absolute;inset:6px;background:var(--lime);border-radius:50%}.progress-ring strong{position:relative;font-size:14px}
+.quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.quick-btn{display:flex;align-items:center;gap:11px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0;box-shadow:var(--shadow);color:var(--ink)}.quick-btn .q-icon{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:#edf6f0;font-size:19px;flex:none}.quick-btn strong{display:block;font-size:13px}.quick-btn small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.content-panel{display:none}.content-panel.active{display:block}
+.panel-card{background:var(--surface);border:1px solid var(--line);border-radius:21px;padding:16px;box-shadow:var(--shadow);margin-bottom:13px}.panel-card h2{font-size:18px;margin:0 0 14px}.panel-card h3{font-size:15px;margin:0}
+.form-grid{display:grid;grid-template-columns:1fr;gap:9px}.field{width:100%;min-width:0;border:1px solid #dce6df;border-radius:12px;padding:12px 13px;background:#fbfdfb;color:var(--ink)}.primary{border:0;background:var(--green);color:#fff;border-radius:12px;padding:12px 16px;font-weight:750;min-height:46px}.secondary{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:8px 10px;font-size:12px;font-weight:650}
+.list{list-style:none;margin:8px 0 0;padding:0}.item{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eef2ef}.item:last-child{border-bottom:0}.item input[type=checkbox]{width:19px;height:19px;accent-color:var(--green);flex:none}.item-content{flex:1;min-width:0;overflow-wrap:anywhere}.item-content.done{color:#87938c;text-decoration:line-through}.item-sub{display:block;font-size:11px;color:var(--muted);margin-top:3px}.empty{padding:18px 0;text-align:center;color:var(--muted);font-size:13px}.amount{font-size:13px;font-weight:800;white-space:nowrap}.amount.income{color:var(--green)}.amount.expense{color:#c24f42}
+.bottom-nav{position:fixed;z-index:5;bottom:0;left:0;right:0;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(18px);border-top:1px solid var(--line);display:flex;justify-content:center}.nav-inner{width:100%;max-width:600px;display:grid;grid-template-columns:repeat(5,1fr);gap:3px}.nav-btn{border:0;background:transparent;color:#87938c;border-radius:14px;padding:7px 2px 5px;font-size:10px;font-weight:650;display:flex;flex-direction:column;align-items:center;gap:3px}.nav-btn .nav-icon{font-size:20px;line-height:1.2}.nav-btn.active{color:var(--green);background:var(--mint)}
+.notice{font-size:11px;color:var(--muted);line-height:1.6;padding:4px 2px 20px}
+.toast{position:fixed;left:50%;bottom:95px;transform:translateX(-50%);background:#183b2f;color:white;padding:10px 15px;border-radius:12px;font-size:13px;box-shadow:0 10px 25px #0002;display:none;z-index:10;max-width:90vw}
+@media(min-width:650px){body{padding-bottom:25px}.app-shell{padding:0 24px}.topbar{padding:26px 0 35px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.quick-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.form-grid.two{grid-template-columns:1fr 1fr}.form-grid.three{grid-template-columns:1.4fr 1fr 1fr}.bottom-nav{position:sticky;top:0;bottom:auto;background:var(--bg);backdrop-filter:none;border:0;padding:14px 12px 0}.nav-inner{max-width:700px;background:white;border:1px solid var(--line);border-radius:17px;padding:5px}.nav-btn{flex-direction:row;justify-content:center;font-size:13px;padding:10px}.nav-btn .nav-icon{font-size:17px}.toast{bottom:25px}}
+@media(max-width:360px){.app-shell{padding:0 12px}.stat{padding:12px}.stat-value{font-size:22px}.date-pill{font-size:10px}.brand-name{font-size:18px}.quick-btn{padding:11px;gap:8px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="app-shell">
+ <div class="topline"><div class="brand"><div class="brand-mark">✦</div><div><div class="brand-name">দিনলিপি</div><div class="brand-sub">তোমার প্রতিদিনের সহকারী</div></div></div><div style="display:flex;align-items:center;gap:8px"><button id="installApp" class="date-pill" style="background:#d6f36a;color:#102b25;border:0;font-weight:800;display:none">⬇ ইনস্টল</button><div class="date-pill" id="datePill">আজকের দিন</div></div></div>
+ <div class="greeting"><div class="eyebrow">একটু একটু করে, প্রতিদিন ✨</div><h1>দিনটা গুছিয়ে শুরু করো</h1><p>তোমার কাজ, খরচ আর ছোট ছোট অভ্যাস—সব এক জায়গায়।</p></div>
+</div></header>
+<div class="bottom-nav"><nav class="nav-inner" aria-label="প্রধান মেনু">
+<button class="nav-btn active" data-tab="home"><span class="nav-icon">⌂</span>হোম</button><button class="nav-btn" data-tab="tasks"><span class="nav-icon">☑</span>কাজ</button><button class="nav-btn" data-tab="expenses"><span class="nav-icon">৳</span>হিসাব</button><button class="nav-btn" data-tab="shopping"><span class="nav-icon">🛒</span>বাজার</button><button class="nav-btn" data-tab="routine"><span class="nav-icon">☀</span>রুটিন</button>
+</nav></div>
+<main class="app-shell">
+<section id="home" class="content-panel active">
+<div class="section-head"><div><h2>আজকের সারাংশ</h2><p>এক নজরে তোমার দিন</p></div></div>
+<div class="stats">
+<div class="stat"><div class="stat-top"><span class="stat-icon">☑</span><span class="tag" id="taskTag">চলছে</span></div><div class="stat-label">বাকি কাজ</div><div class="stat-value" id="homeTasks">০</div><div class="stat-note">আজ শেষ করার লক্ষ্য</div></div>
+<div class="stat"><div class="stat-top"><span class="stat-icon gold">৳</span><span class="tag">এই মাস</span></div><div class="stat-label">মোট খরচ</div><div class="stat-value" id="homeExpense">৳০</div><div class="stat-note">চোখ রাখো বাজেটে</div></div>
+<div class="stat"><div class="stat-top"><span class="stat-icon pink">🛒</span><span class="tag">তালিকা</span></div><div class="stat-label">বাজারের বাকি</div><div class="stat-value" id="homeShopping">০</div><div class="stat-note">কেনাকাটার তালিকা</div></div>
+<div class="stat"><div class="stat-top"><span class="stat-icon blue">🌱</span><span class="tag">অভ্যাস</span></div><div class="stat-label">আজকের অভ্যাস</div><div class="stat-value" id="homeRoutine">০/০</div><div class="stat-note">ছোট অভ্যাস, বড় পরিবর্তন</div></div>
+</div>
+<div class="progress-card"><div><h3>আজকের কাজের অগ্রগতি</h3><p id="progressText">শুরু করার জন্য একটি কাজ যোগ করো।</p></div><div class="progress-ring" id="progressRing"><strong id="progressPct">০%</strong></div></div>
+<div class="section-head"><div><h2>দ্রুত যোগ করো</h2><p>এক ট্যাপেই দরকারি কাজ</p></div></div>
+<div class="quick-grid">
+<button class="quick-btn" data-goto="tasks"><span class="q-icon">＋</span><span><strong>নতুন কাজ</strong><small>করণীয় লিখে রাখো</small></span></button>
+<button class="quick-btn" data-goto="expenses"><span class="q-icon">৳</span><span><strong>খরচ লিখো</strong><small>হিসাব রাখো সহজে</small></span></button>
+<button class="quick-btn" data-goto="shopping"><span class="q-icon">🛍</span><span><strong>বাজারের পণ্য</strong><small>কিছু ভুলে যেও না</small></span></button>
+<button class="quick-btn" data-goto="routine"><span class="q-icon">☀</span><span><strong>নতুন অভ্যাস</strong><small>নিজের যত্ন নাও</small></span></button>
+</div>
+<div class="section-head"><div><h2>আজকের করণীয়</h2><p>একটি করে শেষ করো</p></div><button class="action-link" data-goto="tasks">সব দেখো →</button></div>
+<div class="panel-card"><ul class="list" id="homeTaskList"></ul></div>
+</section>
+<section id="tasks" class="content-panel">
+<div class="section-head"><div><h2>কাজের তালিকা</h2><p>মাথা থেকে কাগজে—সব গুছিয়ে রাখো</p></div></div>
+<div class="panel-card"><h2>＋ নতুন কাজ যোগ করো</h2><form id="taskForm" class="form-grid two"><input class="field" id="taskText" placeholder="যেমন: বাজার করতে হবে" required><input class="field" id="taskDate" type="date" aria-label="কাজের তারিখ"><button class="primary" type="submit">কাজ যোগ করো</button></form></div>
+<div class="panel-card"><h2>তোমার কাজগুলো</h2><ul class="list" id="taskList"></ul></div>
+</section>
+<section id="expenses" class="content-panel">
+<div class="section-head"><div><h2>আয়-ব্যয়ের হিসাব</h2><p>টাকার হিসাব থাকুক হাতের মুঠোয়</p></div></div>
+<div class="stats" style="margin-bottom:13px"><div class="stat"><div class="stat-label">এই মাসের আয়</div><div class="stat-value" id="monthIncome">৳০</div></div><div class="stat"><div class="stat-label">এই মাসের খরচ</div><div class="stat-value" id="monthExpense">৳০</div></div></div>
+<div class="panel-card"><h2>＋ নতুন হিসাব</h2><form id="expenseForm" class="form-grid two"><input class="field" id="expenseName" placeholder="বিবরণ (যেমন: দুপুরের খাবার)" required><input class="field" id="expenseAmount" type="number" min="0.01" step="0.01" placeholder="টাকার পরিমাণ" required><select class="field" id="expenseType" aria-label="লেনদেনের ধরন"><option value="expense">খরচ</option><option value="income">আয়</option></select><input class="field" id="expenseDate" type="date" required><button class="primary" type="submit">হিসাব সংরক্ষণ</button></form></div>
+<div class="panel-card"><h2>সাম্প্রতিক হিসাব</h2><ul class="list" id="expenseList"></ul></div>
+</section>
+<section id="shopping" class="content-panel">
+<div class="section-head"><div><h2>বাজারের তালিকা</h2><p>যা লাগবে, আগে থেকেই লিখে রাখো</p></div></div>
+<div class="panel-card"><h2>＋ পণ্য যোগ করো</h2><form id="shoppingForm" class="form-grid two"><input class="field" id="shoppingText" placeholder="যেমন: চাল ৫ কেজি" required><button class="primary" type="submit">তালিকায় যোগ</button></form></div>
+<div class="panel-card"><h2>কেনাকাটার তালিকা</h2><ul class="list" id="shoppingList"></ul></div>
+</section>
+<section id="routine" class="content-panel">
+<div class="section-head"><div><h2>দৈনিক রুটিন</h2><p>প্রতিদিনের ছোট অভ্যাস গড়ে তোলো</p></div></div>
+<div class="panel-card"><h2>＋ নতুন অভ্যাস</h2><form id="routineForm" class="form-grid two"><input class="field" id="routineText" placeholder="যেমন: ২০ মিনিট হাঁটা" required><button class="primary" type="submit">অভ্যাস যোগ</button></form></div>
+<div class="panel-card"><h2>আজকের অভ্যাস</h2><ul class="list" id="routineList"></ul><button class="secondary" id="resetRoutine" type="button">আজকের টিক রিসেট</button></div>
+</section>
+<p class="notice">তথ্য এই ব্রাউজারের ডিভাইসেই সংরক্ষিত হয়। ব্রাউজারের ডেটা মুছে ফেললে তথ্য হারাতে পারে। এটি প্রাথমিক প্রোটোটাইপ—এখনও ক্লাউড ব্যাকআপ বা অ্যাকাউন্ট নেই।</p>
+</main><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const $=id=>document.getElementById(id);
+const todayISO=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const bn=n=>new Intl.NumberFormat('bn-BD',{maximumFractionDigits:2}).format(n);
+const read=(k,def=[])=>{try{return JSON.parse(localStorage.getItem(k))??def}catch{return def}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let tasks=read('dlm_tasks'),expenses=read('dlm_expenses'),shopping=read('dlm_shopping'),routines=read('dlm_routines');
+$('datePill').textContent=new Intl.DateTimeFormat('bn-BD',{weekday:'short',day:'numeric',month:'short'}).format(new Date());
+$('taskDate').value=todayISO();$('expenseDate').value=todayISO();
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function empty(msg){return `<li class="empty">${msg}</li>`}
+function toast(msg){const el=$('toast');el.textContent=msg;el.style.display='block';clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>el.style.display='none',2200)}
+function go(tab){document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.querySelectorAll('.content-panel').forEach(p=>p.classList.toggle('active',p.id===tab));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
+document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.goto)));
+function renderTasks(){
+ $('taskList').innerHTML=tasks.map((t,i)=>`<li class="item"><input type="checkbox" aria-label="কাজ সম্পন্ন" data-task="${i}" ${t.done?'checked':''}><div class="item-content ${t.done?'done':''}">${safe(t.text)}${t.date?`<span class="item-sub">📅 ${safe(t.date)}</span>`:''}</div><button class="secondary" data-del-task="${i}">মুছুন</button></li>`).join('')||empty('এখনও কোনো কাজ যোগ করা হয়নি।');
+ const open=tasks.filter(t=>!t.done&&(!t.date||t.date<=todayISO()));$('homeTasks').textContent=bn(open.length);$('taskTag').textContent=open.length?'চলছে':'দারুণ!';
+ $('homeTaskList').innerHTML=open.slice(0,4).map((t)=>`<li class="item"><span style="color:var(--green)">○</span><div class="item-content">${safe(t.text)}${t.date?`<span class="item-sub">${safe(t.date)}</span>`:''}</div></li>`).join('')||empty('আজ কোনো বাকি কাজ নেই—দারুণ! 🎉');
+ const total=tasks.length,done=tasks.filter(t=>t.done).length,pct=total?Math.round(done/total*100):0;$('progressRing').style.setProperty('--progress',pct+'%');$('progressPct').textContent=bn(pct)+'%';$('progressText').textContent=total?`${bn(done)}টি সম্পন্ন, ${bn(total-done)}টি বাকি`:'শুরু করার জন্য একটি কাজ যোগ করো।';
+}
+function renderExpenses(){
+ const month=todayISO().slice(0,7),incomes=expenses.filter(e=>e.type==='income'&&e.date.startsWith(month)).reduce((a,e)=>a+e.amount,0),costs=expenses.filter(e=>e.type==='expense'&&e.date.startsWith(month)).reduce((a,e)=>a+e.amount,0);
+ $('homeExpense').textContent='৳'+bn(costs);$('monthIncome').textContent='৳'+bn(incomes);$('monthExpense').textContent='৳'+bn(costs);
+ $('expenseList').innerHTML=expenses.slice().reverse().map((e,j)=>{const i=expenses.length-1-j;return `<li class="item"><div class="item-content">${safe(e.name)}<span class="item-sub">${safe(e.date)} · ${e.type==='income'?'আয়':'খরচ'}</span></div><strong class="amount ${e.type}">${e.type==='income'?'+':'−'}৳${bn(e.amount)}</strong><button class="secondary" data-del-expense="${i}">মুছুন</button></li>`}).join('')||empty('এখনও কোনো হিসাব নেই।');
+}
+function renderShopping(){$('homeShopping').textContent=bn(shopping.filter(x=>!x.done).length);$('shoppingList').innerHTML=shopping.map((x,i)=>`<li class="item"><input type="checkbox" data-shop="${i}" aria-label="কেনা হয়েছে" ${x.done?'checked':''}><div class="item-content ${x.done?'done':''}">${safe(x.text)}</div><button class="secondary" data-del-shop="${i}">মুছুন</button></li>`).join('')||empty('বাজারের তালিকা খালি।');}
+function renderRoutines(){const done=routines.filter(x=>x.done).length;$('homeRoutine').textContent=bn(done)+'/'+bn(routines.length);$('routineList').innerHTML=routines.map((x,i)=>`<li class="item"><input type="checkbox" data-routine="${i}" aria-label="অভ্যাস সম্পন্ন" ${x.done?'checked':''}><div class="item-content ${x.done?'done':''}">${safe(x.text)}</div><button class="secondary" data-del-routine="${i}">মুছুন</button></li>`).join('')||empty('এখনও কোনো অভ্যাস যোগ করা হয়নি।');}
+function render(){renderTasks();renderExpenses();renderShopping();renderRoutines()}
+$('taskForm').addEventListener('submit',e=>{e.preventDefault();tasks.push({text:$('taskText').value.trim(),date:$('taskDate').value,done:false});save('dlm_tasks',tasks);$('taskText').value='';render();toast('কাজ যোগ হয়েছে')});
+$('expenseForm').addEventListener('submit',e=>{e.preventDefault();expenses.push({name:$('expenseName').value.trim(),amount:Number($('expenseAmount').value),type:$('expenseType').value,date:$('expenseDate').value});save('dlm_expenses',expenses);$('expenseName').value='';$('expenseAmount').value='';render();toast('হিসাব সংরক্ষণ হয়েছে')});
+$('shoppingForm').addEventListener('submit',e=>{e.preventDefault();shopping.push({text:$('shoppingText').value.trim(),done:false});save('dlm_shopping',shopping);$('shoppingText').value='';render();toast('বাজারের তালিকায় যোগ হয়েছে')});
+$('routineForm').addEventListener('submit',e=>{e.preventDefault();routines.push({text:$('routineText').value.trim(),done:false});save('dlm_routines',routines);$('routineText').value='';render();toast('নতুন অভ্যাস যোগ হয়েছে')});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.task!==undefined){tasks[+t.dataset.task].done=t.checked;save('dlm_tasks',tasks);render()}if(t.dataset.shop!==undefined){shopping[+t.dataset.shop].done=t.checked;save('dlm_shopping',shopping);render()}if(t.dataset.routine!==undefined){routines[+t.dataset.routine].done=t.checked;save('dlm_routines',routines);render()}});
+document.addEventListener('click',e=>{const t=e.target;if(t.dataset.delTask!==undefined){tasks.splice(+t.dataset.delTask,1);save('dlm_tasks',tasks);render();toast('কাজ মুছে ফেলা হয়েছে')}if(t.dataset.delExpense!==undefined){expenses.splice(+t.dataset.delExpense,1);save('dlm_expenses',expenses);render();toast('হিসাব মুছে ফেলা হয়েছে')}if(t.dataset.delShop!==undefined){shopping.splice(+t.dataset.delShop,1);save('dlm_shopping',shopping);render();toast('পণ্য মুছে ফেলা হয়েছে')}if(t.dataset.delRoutine!==undefined){routines.splice(+t.dataset.delRoutine,1);save('dlm_routines',routines);render();toast('অভ্যাস মুছে ফেলা হয়েছে')}});
+$('resetRoutine').addEventListener('click',()=>{routines=routines.map(x=>({...x,done:false}));save('dlm_routines',routines);renderRoutines();toast('আজকের টিক রিসেট হয়েছে')});
+
+let deferredInstallPrompt = null;
+const installButton = document.getElementById('installApp');
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  if (installButton) installButton.style.display = 'inline-block';
+});
+if (installButton) installButton.addEventListener('click', async () => {
+  if (!deferredInstallPrompt) {
+    toast('Chrome মেনু থেকে “Install app” বা “Add to Home screen” বেছে নাও।');
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installButton.style.display = 'none';
+});
+window.addEventListener('appinstalled', () => {
+  if (installButton) installButton.style.display = 'none';
+  toast('দিনলিপি ইনস্টল হয়েছে!');
+});
+
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+render();
+</script>
+</body></html>
